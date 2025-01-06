@@ -1,0 +1,312 @@
+Microsoft Windows [Version 10.0.26100.2605]
+(c) Корпорація Майкрософт. Усі права захищені.
+
+C:\Users\ASUS>mvn -version
+Apache Maven 3.8.1 (05c21c65bdfed0f71a2f2ada8b84da59348c4c5d)
+Maven home: C:\Program Files\apache-maven-3.8.1\bin\..
+Java version: 19.0.2, vendor: Oracle Corporation, runtime: C:\Program Files\Java\jdk-19
+Default locale: uk_UA, platform encoding: UTF-8
+OS name: "windows 11", version: "10.0", arch: "amd64", family: "windows"
+
+C:\Users\ASUS>mkdir maven01
+
+C:\Users\ASUS>cd maven01
+
+C:\Users\ASUS\maven01>echo ^<project^>^</project^> > pom.xml
+
+C:\Users\ASUS\maven01>mvn validate
+[INFO] Scanning for projects...
+[ERROR] [ERROR] Some problems were encountered while processing the POMs:
+[ERROR] 'modelVersion' is missing. @ line 1, column 9
+[FATAL] 'groupId' is missing. @ line 1, column 9
+[FATAL] 'artifactId' is missing. @ line 1, column 9
+[FATAL] 'version' is missing. @ line 1, column 9
+ @
+[ERROR] The build could not read 1 project -> [Help 1]
+[ERROR]
+[ERROR]   The project [unknown-group-id]:[unknown-artifact-id]:[unknown-version] (C:\Users\ASUS\maven01\pom.xml) has 4 errors
+[ERROR]     'modelVersion' is missing. @ line 1, column 9
+[ERROR]     'groupId' is missing. @ line 1, column 9
+[ERROR]     'artifactId' is missing. @ line 1, column 9
+[ERROR]     'version' is missing. @ line 1, column 9
+[ERROR]
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR]
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/ProjectBuildingException
+
+C:\Users\ASUS\maven01>mvn validate
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ----------------------< org.author.demo:maven01 >-----------------------
+[INFO] Building maven01 1
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  0.111 s
+[INFO] Finished at: 2025-01-06T15:18:14+02:00
+[INFO] ------------------------------------------------------------------------
+
+C:\Users\ASUS\maven01>mkdir src\main\java\org\author\demo
+
+C:\Users\ASUS\maven01>type nul > src\main\java\org\author\demo\App.java
+
+C:\Users\ASUS\maven01>tree /F
+Folder PATH listing
+Volume serial number is BF6C-7ED0
+C:.
+│   pom.xml
+│
+└───src
+    └───main
+        └───java
+            └───org
+                └───author
+                    └───demo
+                            App.java
+
+
+C:\Users\ASUS\maven01>mvn package
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ----------------------< org.author.demo:maven01 >-----------------------
+[INFO] Building maven01 1
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ maven01 ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory C:\Users\ASUS\maven01\src\main\resources
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ maven01 ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 1 source file to C:\Users\ASUS\maven01\target\classes
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ maven01 ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory C:\Users\ASUS\maven01\src\test\resources
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ maven01 ---
+[INFO] No sources to compile
+[INFO]
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ maven01 ---
+[INFO] No tests to run.
+[INFO]
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ maven01 ---
+[INFO] Building jar: C:\Users\ASUS\maven01\target\maven01-1.jar
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.900 s
+[INFO] Finished at: 2025-01-06T15:26:24+02:00
+[INFO] ------------------------------------------------------------------------
+
+C:\Users\ASUS\maven01>java -cp target\maven01-1.jar org.author.demo.App
+Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: Index 0 out of bounds for length 0
+        at org.author.demo.App.main(App.java:5)
+
+C:\Users\ASUS\maven01> java -cp target\maven01-1.jar org.author.demo.App Maven
+Hello Maven!
+
+C:\Users\ASUS\maven01>mvn clean
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ----------------------< org.author.demo:maven01 >-----------------------
+[INFO] Building maven01 1
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ maven01 ---
+[INFO] Deleting C:\Users\ASUS\maven01\target
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  0.295 s
+[INFO] Finished at: 2025-01-06T15:29:34+02:00
+[INFO] ------------------------------------------------------------------------
+
+C:\Users\ASUS\maven01>mkdir src\test\java\org\author\demo
+
+C:\Users\ASUS\maven01>type nul > src\test\java\org\author\demo\AppTest.java
+
+C:\Users\ASUS\maven01>tree /F
+Folder PATH listing
+Volume serial number is BF6C-7ED0
+C:.
+│   pom.xml
+│
+└───src
+    ├───main
+    │   └───java
+    │       └───org
+    │           └───author
+    │               └───demo
+    │                       App.java
+    │
+    └───test
+        └───java
+            └───org
+                └───author
+                    └───demo
+                            AppTest.java
+
+
+C:\Users\ASUS\maven01>mvn test
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ----------------------< org.author.demo:maven01 >-----------------------
+[INFO] Building maven01 1
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ maven01 ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory C:\Users\ASUS\maven01\src\main\resources
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ maven01 ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 1 source file to C:\Users\ASUS\maven01\target\classes
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ maven01 ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory C:\Users\ASUS\maven01\src\test\resources
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ maven01 ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 1 source file to C:\Users\ASUS\maven01\target\test-classes
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR :
+[INFO] -------------------------------------------------------------
+[ERROR] /C:/Users/ASUS/maven01/src/test/java/org/author/demo/AppTest.java:[3,17] package org.junit does not exist
+[ERROR] /C:/Users/ASUS/maven01/src/test/java/org/author/demo/AppTest.java:[7,10] cannot find symbol
+  symbol:   class Test
+  location: class org.author.demo.AppTest
+[INFO] 2 errors
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.346 s
+[INFO] Finished at: 2025-01-06T15:33:18+02:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.1:testCompile (default-testCompile) on project maven01: Compilation failure: Compilation failure:
+[ERROR] /C:/Users/ASUS/maven01/src/test/java/org/author/demo/AppTest.java:[3,17] package org.junit does not exist
+[ERROR] /C:/Users/ASUS/maven01/src/test/java/org/author/demo/AppTest.java:[7,10] cannot find symbol
+[ERROR]   symbol:   class Test
+[ERROR]   location: class org.author.demo.AppTest
+[ERROR] -> [Help 1]
+[ERROR]
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR]
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+
+C:\Users\ASUS\maven01>mvn clean
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ----------------------< org.author.demo:maven01 >-----------------------
+[INFO] Building maven01 1
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ maven01 ---
+[INFO] Deleting C:\Users\ASUS\maven01\target
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  0.264 s
+[INFO] Finished at: 2025-01-06T15:37:22+02:00
+[INFO] ------------------------------------------------------------------------
+
+C:\Users\ASUS\maven01>mvn test
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ----------------------< org.author.demo:maven01 >-----------------------
+[INFO] Building maven01 1
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ maven01 ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory C:\Users\ASUS\maven01\src\main\resources
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ maven01 ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 1 source file to C:\Users\ASUS\maven01\target\classes
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ maven01 ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory C:\Users\ASUS\maven01\src\test\resources
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ maven01 ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 1 source file to C:\Users\ASUS\maven01\target\test-classes
+[INFO]
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ maven01 ---
+[INFO] Surefire report directory: C:\Users\ASUS\maven01\target\surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running org.author.demo.AppTest
+Hello Maven!
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.047 sec
+
+Results :
+
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  2.122 s
+[INFO] Finished at: 2025-01-06T15:37:37+02:00
+[INFO] ------------------------------------------------------------------------
+
+C:\Users\ASUS\maven01>mvn package
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ----------------------< org.author.demo:maven01 >-----------------------
+[INFO] Building maven01 1
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ maven01 ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory C:\Users\ASUS\maven01\src\main\resources
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ maven01 ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ maven01 ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory C:\Users\ASUS\maven01\src\test\resources
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ maven01 ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO]
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ maven01 ---
+[INFO] Surefire report directory: C:\Users\ASUS\maven01\target\surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running org.author.demo.AppTest
+Hello Maven!
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.048 sec
+
+Results :
+
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO]
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ maven01 ---
+[INFO] Building jar: C:\Users\ASUS\maven01\target\maven01-1.jar
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.640 s
+[INFO] Finished at: 2025-01-06T15:39:29+02:00
+[INFO] ------------------------------------------------------------------------
+
+C:\Users\ASUS\maven01>java -cp target\maven01-1.jar org.author.demo.App "Maven"
+Hello Maven!
+
+C:\Users\ASUS\maven01>
